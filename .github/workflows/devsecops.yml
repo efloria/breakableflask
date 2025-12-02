@@ -23,7 +23,7 @@ jobs:
           echo "ecrire ici le scrypt de contrôle du Dockerfile"
       - name: Real test
         run: |
-          ls          
+          docker run --rm   -v "$PWD":/project   -v $HOME/.cache/trivy:/root/.cache/   aquasec/trivy:latest config /project/Dockerfile          
   Deploy:
     runs-on: ubuntu-latest
     needs: Dockerfile
