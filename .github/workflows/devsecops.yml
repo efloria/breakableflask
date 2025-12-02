@@ -2,18 +2,24 @@ name: Automatisation des tests DevSecOps
 on: push
 jobs:
   Dependances:
-    runs-on: ubuntu-latest
+    runs-on: aquasec/trivy:latest
     steps:
       - name: Dependances
         run: |
           echo "ecrire ici le scrypt de contrôle des dépendances"
+      - name: Controle
+        run: |
+          trivy fs requirements.txt
   Dockerfile:
-    runs-on: ubuntu-latest
+    runs-on: aquasec/trivy:latest
     needs: Dependances
     steps:
       - name: Test Dockerfile
         run: |
           echo "ecrire ici le scrypt de contrôle du Dockerfile"
+      - name: Real test
+        run: |
+          trivy config Dockerfile
   Deploy:
     runs-on: ubuntu-latest
     needs: Dockerfile
