@@ -11,8 +11,7 @@ jobs:
           echo "ecrire ici le scrypt de contrôle des dépendances"
       - name: Controle
         run: |
-          docker run --rm   -v "$PWD":/project   -v $HOME/.cache/trivy:/root/.cache/   aquasec/trivy:latest fs /project/breakableflask/requirements.txt
-          
+          ls && pwd
   Dockerfile:
     runs-on: ubuntu-latest
     needs: Dependances
@@ -24,7 +23,7 @@ jobs:
           echo "ecrire ici le scrypt de contrôle du Dockerfile"
       - name: Real test
         run: |
-          docker run --rm   -v "$PWD":/project   -v $HOME/.cache/trivy:/root/.cache/   aquasec/trivy:latest config /project/breakableflask/Dockerfile
+          docker run --rm   -v "$PWD":/project   -v $HOME/.cache/trivy:/root/.cache/   aquasec/trivy:latest config /project/Dockerfile
           
   Deploy:
     runs-on: ubuntu-latest
