@@ -2,7 +2,7 @@ name: Automatisation des tests DevSecOps
 on: push
 jobs:
   Dependances:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
       - name: Dependances
         run: |
@@ -12,7 +12,7 @@ jobs:
           docker run --rm   -v "$PWD":/project   -v $HOME/.cache/trivy:/root/.cache/   aquasec/trivy:latest fs /project/requirements.txt
           
   Dockerfile:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     needs: Dependances
     steps:
       - name: Test Dockerfile
