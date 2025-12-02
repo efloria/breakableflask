@@ -16,3 +16,4 @@ ENV PYTHONUNBUFFERED=1
 USER appuser
 EXPOSE 4000
 CMD ["python3", "main.py"]
+HEALTHCHECK CMD curl -f http://localhost:5000/ || exit 1
